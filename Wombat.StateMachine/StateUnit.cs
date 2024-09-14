@@ -37,13 +37,10 @@ namespace Wombat.StateMachine
             _subscription = Input.SelectMany(async inputValue =>
             {
                 var outputValue = await _asyncTransitionLogic(inputValue, previousState, this);
-                Console.WriteLine($"输入值:{outputValue}");
-
                 return outputValue;
             })
             .Subscribe(outputValue =>
             {
-                Console.WriteLine($"输出值:{outputValue}");
                 Output.OnNext(outputValue);
             });
         }
